@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Card view -->
+    <style name="card_view_title_with_margin">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_margin">@dimen/card_view_title_margin</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="card_view_title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- Tool bar-->
+    <style name="toolbar_title">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

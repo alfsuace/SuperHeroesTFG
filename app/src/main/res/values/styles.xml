@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Commons Component -->
+    <style name="AppHeadlineHeader" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/md_theme_onSecondaryContainer</item>
+    </style>
+
+    <style name="AppHeadline" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/md_theme_onSurface</item>
+    </style>
+
+    <style name="AppSupportingText" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textColor">@color/md_theme_onSurface</item>
+    </style>
+
+    <style name="AppOverlineText" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/md_theme_onSurfaceVariant</item>
+    </style>
+
+</resources>

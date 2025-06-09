@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.superhero.presentation.SuperHeroesFragment">
+
+    <include
+        android:id="@+id/super_hero_toolbar"
+        layout="@layout/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.faltenreich.skeletonlayout.SkeletonLayout
+        android:id="@+id/super_hero_skeleton_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/super_hero_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/view_item_superhero" />
+
+    </com.faltenreich.skeletonlayout.SkeletonLayout>
+
+</LinearLayout>

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SuperheroesTFG</string>
+
+    <string name="menu_fragment_home">home</string>
+
+    <string name="super_heroes_name">Nombre super hereo</string>
 </resources>

@@ -11,4 +11,6 @@
     <dimen name="spacing_vertical_extra">32dp</dimen>
     <dimen name="spacing_xs">4dp</dimen>
 
+    <!-- Card style -->
+    <dimen name="card_radius">12dp</dimen>
 </resources>

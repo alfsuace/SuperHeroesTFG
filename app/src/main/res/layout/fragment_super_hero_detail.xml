@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/hero_detail_toolbar"
+            layout="@layout/secondary_toolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:divider="?android:attr/dividerHorizontal"
+            android:showDividers="middle"
+            android:dividerPadding="@dimen/spacing_text">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/CardDetailContainer">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_vertical">
+
+                    <ImageView
+                        android:id="@+id/detail_hero_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_banner"
+                        android:scaleType="centerCrop"
+                        tools:src="@tools:sample/avatars" />
+
+                    <com.alfsuace.superheroestfg.feature.superhero.presentation.view.StatItemView
+                        android:id="@+id/detail_hero_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <com.alfsuace.superheroestfg.feature.superhero.presentation.view.StatItemView
+                        android:id="@+id/detail_hero_slug"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/CardDetailContainer">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/CardDetailDescription"
+                        android:text="@string/detail_hero_stats" />
+
+                    <com.alfsuace.superheroestfg.feature.superhero.presentation.view.StatItemView
+                        android:id="@+id/detail_hero_intelligence"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <com.alfsuace.superheroestfg.feature.superhero.presentation.view.StatItemView
+                        android:id="@+id/detail_hero_strength"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <com.alfsuace.superheroestfg.feature.superhero.presentation.view.StatItemView
+                        android:id="@+id/detail_hero_speed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <com.alfsuace.superheroestfg.feature.superhero.presentation.view.StatItemView
+                        android:id="@+id/detail_hero_durability"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <com.alfsuace.superheroestfg.feature.superhero.presentation.view.StatItemView
+                        android:id="@+id/detail_hero_power"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <com.alfsuace.superheroestfg.feature.superhero.presentation.view.StatItemView
+                        android:id="@+id/detail_hero_combat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/CardDetailContainer">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detail_hero_biography"
+                        style="@style/CardDetailDescription" />
+
+                    <com.alfsuace.superheroestfg.feature.superhero.presentation.view.StatItemView
+                        android:id="@+id/detail_hero_full_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <com.alfsuace.superheroestfg.feature.superhero.presentation.view.StatItemView
+                        android:id="@+id/detail_hero_alter_ego"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <com.alfsuace.superheroestfg.feature.superhero.presentation.view.StatItemView
+                        android:id="@+id/detail_hero_birthplace"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/CardDetailContainer">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detail_hero_work"
+                        style="@style/CardDetailDescription" />
+
+                    <com.alfsuace.superheroestfg.feature.superhero.presentation.view.StatItemView
+                        android:id="@+id/detail_hero_occupation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <com.alfsuace.superheroestfg.feature.superhero.presentation.view.StatItemView
+                        android:id="@+id/detail_hero_base"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

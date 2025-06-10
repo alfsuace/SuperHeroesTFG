@@ -9,11 +9,14 @@ import com.alfsuace.superheroestfg.feature.superhero.domain.SuperHero
 class SuperHeroViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
     private val binding = ViewItemSuperheroBinding.bind(view)
 
-    fun bind(superHero: SuperHero) {
+    fun bind(superHero: SuperHero, onClick: (String) -> Unit) {
         binding.apply {
             itemSuperHeroName.text = superHero.name
             itemSuperHeroSlug.text = superHero.slug
             itemSuperHeroImage.loadImage(superHero.images.sm)
+            view.setOnClickListener {
+                onClick(superHero.id.toString())
+            }
         }
     }
 }

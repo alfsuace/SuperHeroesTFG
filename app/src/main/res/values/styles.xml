@@ -25,4 +25,26 @@
         <item name="cardElevation">@dimen/spacing_xs</item>
     </style>
 
+    <style name="CardDetailContainer" parent="Widget.MaterialComponents.CardView">
+        <item name="android:layout_marginBottom">@dimen/spacing_vertical</item>
+        <item name="cardCornerRadius">@dimen/card_radius</item>
+        <item name="cardElevation">@dimen/spacing_xs</item>
+    </style>
+
+    <style name="CardMainText">
+        <item name="android:textSize">@dimen/spacing_horizontal</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CardSupportingText">
+        <item name="android:textSize">@dimen/spacing_horizontal</item>
+    </style>
+
+    <style name="CardDetailDescription">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/spacing_horizontal</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_text</item>
+    </style>
+
 </resources>

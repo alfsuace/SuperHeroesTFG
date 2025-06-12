@@ -18,4 +18,11 @@
         <item name="android:textColor">@color/md_theme_onSurfaceVariant</item>
     </style>
 
+    <!-- Card view list style -->
+    <style name="CardListItem" parent="Widget.MaterialComponents.CardView">
+        <item name="android:elevation">@dimen/spacing_xs</item>
+        <item name="cardCornerRadius">@dimen/card_radius</item>
+        <item name="cardElevation">@dimen/spacing_xs</item>
+    </style>
+
 </resources>

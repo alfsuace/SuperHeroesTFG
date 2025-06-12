@@ -1,6 +1,6 @@
 package com.alfsuace.superheroestfg.feature.superhero.data
 
-import com.alfsuace.superheroestfg.feature.superhero.data.local.SuperHeroLocalDataSource
+import com.alfsuace.superheroestfg.feature.superhero.data.local.SuperHeroXmlDataSource
 import com.alfsuace.superheroestfg.feature.superhero.data.remote.SuperHeroApiRemoteDataSource
 import com.alfsuace.superheroestfg.feature.superhero.domain.SuperHero
 import com.alfsuace.superheroestfg.feature.superhero.domain.SuperHeroRepository
@@ -10,7 +10,7 @@ import org.koin.core.annotation.Single
 @Single
 class SuperHeroDataRepository(
     private val remoteDataSource: SuperHeroApiRemoteDataSource,
-    private val localDataSource: SuperHeroLocalDataSource
+    private val localDataSource: SuperHeroXmlDataSource
 ) : SuperHeroRepository {
 
     override suspend fun getSuperHeroes(): List<SuperHero> {
@@ -24,7 +24,7 @@ class SuperHeroDataRepository(
         }
     }
 
-    override suspend fun getSuperHero(id: String): SuperHero? {
+    override suspend fun getSuperHeroById(id: String): SuperHero? {
         val localSuperHero = localDataSource.getById(id)
         return if (localSuperHero == null || localSuperHero.id.toString() != id) {
             val remoteSuperHero = remoteDataSource.getSuperHero(id)

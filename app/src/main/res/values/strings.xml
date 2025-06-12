@@ -5,6 +5,11 @@
 
     <string name="super_heroes_name">Nombre super hereo</string>
 
+    <string name="menu_go_to_favorites">Ir a favoritos</string>
+
+    <!-- Strings for Shared prefs -->
+    <string name="shared_prefs_favorite_superheroes">favoriteSuperHeroes</string>
+
     <!-- Strings for SuperHeroDetailFragment -->
     <string name="detail_hero_toolbar_title">Detalle heroe</string>
     <string name="detail_hero_stats">Estadísticas</string>

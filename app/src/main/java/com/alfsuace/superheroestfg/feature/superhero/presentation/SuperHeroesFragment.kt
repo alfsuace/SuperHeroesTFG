@@ -2,8 +2,10 @@ package com.alfsuace.superheroestfg.feature.superhero.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -24,6 +26,7 @@ class SuperHeroesFragment : Fragment() {
     private val viewModel: SuperHeroViewModel by viewModel()
     private lateinit var superheroAdapter: SuperHeroAdapter
     private lateinit var skeleton: Skeleton
+    private var buttonListForView = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +41,19 @@ class SuperHeroesFragment : Fragment() {
     private fun setUpView() {
         superheroAdapter = SuperHeroAdapter()
         binding.apply {
+            superHeroToolbar.mainToolBar.apply {
+                menu.clear()
+                inflateMenu(R.menu.menu_super_hero_favorite)
+                setOnMenuItemClickListener { menuItem ->
+                    if (menuItem.itemId == R.id.action_go_to_favorites) {
+                        buttonListForView = !buttonListForView
+                        updateList(menuItem)
+                        true
+                    } else {
+                        false
+                    }
+                }
+            }
             superHeroList.apply {
                 layoutManager = LinearLayoutManager(
                     requireContext(),
@@ -45,12 +61,33 @@ class SuperHeroesFragment : Fragment() {
                     false
                 )
                 adapter = superheroAdapter
-                superheroAdapter.setEvent {
-                    navigateToSuperHeroDetail(it)
-                }
+
+                superheroAdapter.setEvent(
+                    onClick = { navigateToSuperHeroDetail(it) },
+                    onFavoriteClick = { id, isFavorite ->
+                        if (isFavorite) {
+                            viewModel.deleteFavoriteSuperHero(id)
+                        } else {
+                            viewModel.saveFavoriteSuperHero(id)
+                        }
+                    }
+                )
+
                 skeleton = applySkeleton(R.layout.view_item_superhero, 15)
             }
         }
+    }
+
+    private fun updateList(menuItem: MenuItem) {
+        if (buttonListForView) {
+            menuItem.icon =
+                AppCompatResources.getDrawable(requireContext(), R.drawable.ic_favorite_filled)
+            viewModel.getFavoriteSuperHeroes()
+        } else {
+            menuItem.icon = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_favorite)
+            viewModel.getSuperHeroes()
+        }
+
     }
 
     private fun navigateToSuperHeroDetail(superHeroId: String) {

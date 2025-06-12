@@ -44,14 +44,25 @@ class SuperHeroViewModel(
     fun saveFavoriteSuperHero(superHeroId: String) {
         viewModelScope.launch(Dispatchers.IO) {
             saveFavoriteSuperHeroUseCase.invoke(superHeroId)
+            toggleFavoriteLocally(superHeroId)
         }
     }
 
     fun deleteFavoriteSuperHero(superHeroId: String) {
         viewModelScope.launch(Dispatchers.IO) {
             deleteFavoriteSuperHeroUseCase.invoke(superHeroId)
+            toggleFavoriteLocally(superHeroId)
         }
     }
+
+    fun toggleFavoriteLocally(superHeroId: String) {
+        val current = _uiState.value?.superHeroes ?: return
+        val updated = current.map {
+            if (it.hero.id.toString() == superHeroId) it.copy(isFavorite = !it.isFavorite) else it
+        }
+        _uiState.postValue(_uiState.value?.copy(superHeroes = updated))
+    }
+
 
     data class UiState(
         val isLoading: Boolean = false,

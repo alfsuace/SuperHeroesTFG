@@ -2,6 +2,7 @@ package com.alfsuace.superheroestfg.app
 
 import android.app.Application
 import com.alfsuace.superheroestfg.app.data.di.AppModule
+import com.alfsuace.superheroestfg.app.data.di.LocalModule
 import com.alfsuace.superheroestfg.app.data.di.RemoteModule
 import com.alfsuace.superheroestfg.feature.superhero.di.SuperHeroModule
 import org.koin.android.ext.koin.androidContext
@@ -17,7 +18,8 @@ class SuperHeroApplication : Application() {
             modules(
                 AppModule().module,
                 RemoteModule().module,
-                SuperHeroModule().module
+                SuperHeroModule().module,
+                LocalModule().module
             )
         }
     }

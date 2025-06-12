@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alfsuace.superheroestfg.R
 import com.alfsuace.superheroestfg.databinding.FragmentSuperHeroesBinding
@@ -44,9 +45,20 @@ class SuperHeroesFragment : Fragment() {
                     false
                 )
                 adapter = superheroAdapter
+                superheroAdapter.setEvent {
+                    navigateToSuperHeroDetail(it)
+                }
                 skeleton = applySkeleton(R.layout.view_item_superhero, 15)
             }
         }
+    }
+
+    private fun navigateToSuperHeroDetail(superHeroId: String) {
+        val action =
+            SuperHeroesFragmentDirections.actionSuperHeroesFragmentToSuperHeroDetailFragment(
+                superHeroId
+            )
+        findNavController().navigate(action)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -4,4 +4,29 @@
     <string name="menu_fragment_home">home</string>
 
     <string name="super_heroes_name">Nombre super hereo</string>
+
+    <!-- Strings for SuperHeroDetailFragment -->
+    <string name="detail_hero_toolbar_title">Detalle heroe</string>
+    <string name="detail_hero_stats">Estadísticas</string>
+    <string name="detail_hero_biography">Biografía</string>
+    <string name="detail_hero_work">Trabajo</string>
+
+    <string name="detail_hero_name">Nombre:</string>
+    <string name="detail_hero_slug">Slug:</string>
+
+    <string name="detail_hero_full_name">Nombre completo:</string>
+    <string name="detail_hero_alter_egos">Alter egos:</string>
+    <string name="detail_hero_birth">Fecha de nacimiento:</string>
+
+    <string name="detail_hero_intelligence">Inteligencia:</string>
+    <string name="detail_hero_strength">Fuerza:</string>
+    <string name="detail_hero_speed">Velocidad:</string>
+    <string name="detail_hero_durability">Durabilidad:</string>
+    <string name="detail_hero_power">Poder:</string>
+    <string name="detail_hero_combat">Combate:</string>
+
+    <string name="detail_hero_occupation">Ocupación:</string>
+    <string name="detail_hero_base">Base:</string>
+
+
 </resources>

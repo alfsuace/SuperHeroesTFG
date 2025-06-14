@@ -6,7 +6,6 @@ import org.koin.core.annotation.Single
 class GetSuperHeroByIdUseCase(private val repository: SuperHeroRepository) {
 
     suspend operator fun invoke(id: String): SuperHero? {
-        return repository.getSuperHero(id)
+        return repository.getSuperHeroById(id)
     }
-
 }

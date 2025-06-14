@@ -7,7 +7,7 @@ import com.google.gson.Gson
 import org.koin.core.annotation.Single
 
 @Single
-class SuperHeroLocalDataSource(private val context: Context, private val gson: Gson) {
+class SuperHeroXmlDataSource(private val context: Context, private val gson: Gson) {
 
     private val sharedPreferences =
         context.getSharedPreferences("superheroes", Context.MODE_PRIVATE)

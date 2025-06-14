@@ -1,15 +1,21 @@
 package com.alfsuace.superheroestfg.feature.superhero.presentation.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.alfsuace.superheroestfg.feature.superhero.domain.SuperHero
+import com.alfsuace.superheroestfg.feature.superhero.domain.GetSuperHeroesUseCase
 
-class SuperHeroDiffUtil : DiffUtil.ItemCallback<SuperHero>() {
+class SuperHeroDiffUtil : DiffUtil.ItemCallback<GetSuperHeroesUseCase.SuperHeroUiModel>() {
 
-    override fun areItemsTheSame(oldItem: SuperHero, newItem: SuperHero): Boolean {
-        return oldItem.id == newItem.id
+    override fun areItemsTheSame(
+        oldItem: GetSuperHeroesUseCase.SuperHeroUiModel,
+        newItem: GetSuperHeroesUseCase.SuperHeroUiModel
+    ): Boolean {
+        return oldItem.hero.id == newItem.hero.id
     }
 
-    override fun areContentsTheSame(oldItem: SuperHero, newItem: SuperHero): Boolean {
+    override fun areContentsTheSame(
+        oldItem: GetSuperHeroesUseCase.SuperHeroUiModel,
+        newItem: GetSuperHeroesUseCase.SuperHeroUiModel
+    ): Boolean {
         return oldItem == newItem
     }
 }

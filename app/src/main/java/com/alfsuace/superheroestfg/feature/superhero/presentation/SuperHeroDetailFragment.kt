@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.alfsuace.superheroestfg.R
-import com.alfsuace.superheroestfg.app.data.extensions.loadImage
+import com.alfsuace.superheroestfg.app.extensions.loadImage
 import com.alfsuace.superheroestfg.databinding.FragmentSuperHeroDetailBinding
 import com.alfsuace.superheroestfg.feature.superhero.domain.SuperHero
 import org.koin.androidx.viewmodel.ext.android.viewModel

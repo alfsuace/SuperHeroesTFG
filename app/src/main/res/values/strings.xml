@@ -33,5 +33,13 @@
     <string name="detail_hero_occupation">Ocupación:</string>
     <string name="detail_hero_base">Base:</string>
 
+    <!-- Strings for Error -->
+    <string name="title_error_server">Error del servidor</string>
+    <string name="description_error_server">Ha ocurrido un problema al contactar con el servidor. Inténtalo de nuevo más tarde.</string>
+    <string name="title_error_connection">Sin conexión</string>
+    <string name="description_error_connection">No se ha podido establecer conexión a internet. Comprueba tu red e inténtalo de nuevo.</string>
+    <string name="title_error_unknown">Error desconocido</string>
+    <string name="description_error_unknown">Ha ocurrido un error inesperado. Por favor, intenta de nuevo o contacta con soporte.</string>
+
 
 </resources>

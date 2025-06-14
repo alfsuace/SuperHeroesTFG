@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alfsuace.superheroestfg.app.data.domain.ErrorApp
+import com.alfsuace.superheroestfg.app.domain.ErrorApp
 import com.alfsuace.superheroestfg.feature.superhero.domain.GetSuperHeroByIdUseCase
 import com.alfsuace.superheroestfg.feature.superhero.domain.SuperHero
 import kotlinx.coroutines.Dispatchers

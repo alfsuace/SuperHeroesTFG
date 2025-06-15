@@ -1,4 +1,4 @@
-package com.alfsuace.superheroestfg.app.data.extensions
+package com.alfsuace.superheroestfg.app.extensions
 
 import android.widget.ImageView
 import coil.load

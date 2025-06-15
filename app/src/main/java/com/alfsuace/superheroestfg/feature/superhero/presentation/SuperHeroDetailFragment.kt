@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.alfsuace.superheroestfg.R
-import com.alfsuace.superheroestfg.app.data.extensions.loadImage
+import com.alfsuace.superheroestfg.app.extensions.loadImage
 import com.alfsuace.superheroestfg.databinding.FragmentSuperHeroDetailBinding
 import com.alfsuace.superheroestfg.feature.superhero.domain.SuperHero
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -51,16 +51,7 @@ class SuperHeroDetailFragment : Fragment() {
 
     private fun setupObservers() {
         val observer = Observer<SuperHeroDetailViewModel.UiState> {
-            if (it.isLoading) {
-                //skeleton.showSkeleton()
-            } else {
-                //skeleton.showOriginal()
-                if (it.errorApp != null) {
-                    //TODO showError(it.errorApp)
-                } else {
-                    it.superHero?.let { superHero -> bindData(superHero = superHero) }
-                }
-            }
+            it.superHero?.let { superHero -> bindData(superHero = superHero) }
         }
         viewModel.uiState.observe(viewLifecycleOwner, observer)
 

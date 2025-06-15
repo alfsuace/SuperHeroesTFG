@@ -52,4 +52,32 @@
         <item name="android:layout_marginBottom">@dimen/spacing_text</item>
     </style>
 
+    <!-- Error view -->
+    <style name="image_view_error">
+        <item name="android:layout_marginTop">@dimen/margin_error_image_top</item>
+        <item name="android:layout_marginHorizontal">@dimen/margin_error</item>
+    </style>
+
+    <style name="title_error">
+        <item name="android:layout_marginTop">@dimen/title_error_top_margin</item>
+        <item name="android:layout_marginHorizontal">@dimen/margin_error</item>
+        <item name="android:textSize">@dimen/title_error_size</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="description_error">
+        <item name="android:layout_marginTop">@dimen/margin_error</item>
+        <item name="android:layout_marginHorizontal">@dimen/margin_error</item>
+        <item name="android:textSize">@dimen/description_error_size</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="action_retry">
+        <item name="android:layout_marginTop">@dimen/margin_error_image_top</item>
+        <item name="android:layout_marginBottom">@dimen/margin_error</item>
+        <item name="android:layout_marginHorizontal">@dimen/margin_error</item>
+        <item name="android:backgroundTint">@color/md_theme_primary</item>
+    </style>
+
 </resources>

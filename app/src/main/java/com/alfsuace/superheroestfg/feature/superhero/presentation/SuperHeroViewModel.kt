@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alfsuace.superheroestfg.app.data.domain.ErrorApp
+import com.alfsuace.superheroestfg.app.domain.ErrorApp
 import com.alfsuace.superheroestfg.feature.superhero.domain.DeleteFavoriteSuperHeroUseCase
 import com.alfsuace.superheroestfg.feature.superhero.domain.GetFavoritesSuperHeroesUseCase
 import com.alfsuace.superheroestfg.feature.superhero.domain.GetSuperHeroesUseCase
@@ -28,16 +28,36 @@ class SuperHeroViewModel(
     fun getSuperHeroes() {
         _uiState.value = UiState(isLoading = true)
         viewModelScope.launch(Dispatchers.IO) {
-            val superHeroes = getSuperHeroesUseCase.invoke()
-            _uiState.postValue(UiState(superHeroes = superHeroes))
+            getSuperHeroesUseCase.invoke().fold(
+                onSuccess = { heroes ->
+                    _uiState.postValue(
+                        UiState(isLoading = false, superHeroes = heroes)
+                    )
+                },
+                onFailure = { error ->
+                    _uiState.postValue(
+                        UiState(isLoading = false, errorApp = error as? ErrorApp)
+                    )
+                }
+            )
         }
     }
 
     fun getFavoriteSuperHeroes() {
         _uiState.value = UiState(isLoading = true)
         viewModelScope.launch(Dispatchers.IO) {
-            val superHeroes = getFavoritesSuperHeroesUseCase.invoke()
-            _uiState.postValue(UiState(superHeroes = superHeroes))
+            getFavoritesSuperHeroesUseCase.invoke().fold(
+                onSuccess = { heroes ->
+                    _uiState.postValue(
+                        UiState(isLoading = false, superHeroes = heroes)
+                    )
+                },
+                onFailure = { error ->
+                    _uiState.postValue(
+                        UiState(isLoading = false, errorApp = error as? ErrorApp)
+                    )
+                }
+            )
         }
     }
 

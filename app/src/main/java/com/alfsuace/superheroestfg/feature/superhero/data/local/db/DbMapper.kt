@@ -7,8 +7,9 @@ import com.alfsuace.superheroestfg.feature.superhero.domain.PowerStats
 import com.alfsuace.superheroestfg.feature.superhero.domain.SuperHero
 import com.alfsuace.superheroestfg.feature.superhero.domain.Work
 
-fun SuperHero.toEntity(): SuperHeroEntity = SuperHeroEntity(
+fun SuperHero.toEntity(timestamp: Long): SuperHeroEntity = SuperHeroEntity(
     id = id,
+    timeStamp = timestamp,
     name = name,
     slug = slug,
     powerStats = PowerStatsEntity(
@@ -48,7 +49,7 @@ fun SuperHero.toEntity(): SuperHeroEntity = SuperHeroEntity(
     )
 )
 
-fun SuperHeroEntity.toDomain(): SuperHero = SuperHero(
+fun SuperHeroEntity.toModel(): SuperHero = SuperHero(
     id = id,
     name = name,
     slug = slug,

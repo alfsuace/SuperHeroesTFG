@@ -14,6 +14,9 @@ interface SuperHeroDao {
     @Query("SELECT * FROM $SUPERHERO_TABLE WHERE $SUPERHERO_ID = :id")
     suspend fun getHeroById(id: Int): SuperHeroEntity?
 
+    @Query("DELETE FROM $SUPERHERO_TABLE")
+    suspend fun deleteAllHeroes()
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertHeroes(vararg superHeroes: SuperHeroEntity)
 

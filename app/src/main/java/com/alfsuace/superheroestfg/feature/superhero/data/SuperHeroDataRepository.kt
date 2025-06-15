@@ -1,5 +1,6 @@
 package com.alfsuace.superheroestfg.feature.superhero.data
 
+import com.alfsuace.superheroestfg.app.domain.ErrorApp
 import com.alfsuace.superheroestfg.feature.superhero.data.local.db.SuperHeroDbDataSource
 import com.alfsuace.superheroestfg.feature.superhero.data.remote.SuperHeroApiRemoteDataSource
 import com.alfsuace.superheroestfg.feature.superhero.domain.SuperHero
@@ -13,28 +14,27 @@ class SuperHeroDataRepository(
     private val localDataSource: SuperHeroDbDataSource
 ) : SuperHeroRepository {
 
-    override suspend fun getSuperHeroes(): List<SuperHero> {
-        val localSuperHeroes = localDataSource.getSuperHeroes()
-        return if (localSuperHeroes.isEmpty()) {
-            val remoteSuperHeroes = remoteDataSource.getSuperHeroes()
-            localDataSource.saveSuperHeroes(remoteSuperHeroes)
-            remoteSuperHeroes
-        } else {
-            localSuperHeroes
-        }
-    }
-
-    override suspend fun getSuperHeroById(id: String): SuperHero? {
-        val localSuperHero = localDataSource.getById(id)
-        return if (localSuperHero == null || localSuperHero.id.toString() != id) {
-            val remoteSuperHero = remoteDataSource.getSuperHero(id)
-            remoteSuperHero?.let {
-                localDataSource.saveSuperHero(it)
+    override suspend fun getSuperHeroes(): Result<List<SuperHero>> {
+        return localDataSource.getSuperHeroes().onFailure { localError ->
+            if (localError is ErrorApp.CacheExpiredErrorApp || localError is ErrorApp.DataErrorApp) {
+                remoteDataSource.getSuperHeroes().onSuccess { remoteSuperHeroes ->
+                    localDataSource.deleteAllHeroes()
+                    localDataSource.saveSuperHeroes(remoteSuperHeroes)
+                    remoteSuperHeroes
+                }
+                return remoteDataSource.getSuperHeroes()
+            } else {
+                Result.failure<ErrorApp>(localError)
             }
-            remoteSuperHero
-        } else {
-            localSuperHero
         }
     }
 
+    override suspend fun getSuperHeroById(id: String): Result<SuperHero> {
+        return localDataSource.getById(id).onFailure { hero ->
+            if (hero is ErrorApp.CacheExpiredErrorApp || hero is ErrorApp.DataErrorApp) {
+                return remoteDataSource.getSuperHero(id)
+            }
+            return Result.failure(hero)
+        }
+    }
 }

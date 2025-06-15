@@ -14,6 +14,9 @@ data class SuperHeroEntity(
     @ColumnInfo(name = SUPERHERO_ID)
     val id: Int,
 
+    @ColumnInfo(name = "time_stamp")
+    val timeStamp: Long,
+
     @ColumnInfo(name = "name")
     val name: String,
 

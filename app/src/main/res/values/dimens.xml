@@ -13,4 +13,12 @@
 
     <!-- Card style -->
     <dimen name="card_radius">12dp</dimen>
+
+    <!-- Error -->
+    <dimen name="image_error_height">380sp</dimen>
+    <dimen name="margin_error">16sp</dimen>
+    <dimen name="margin_error_image_top">89sp</dimen>
+    <dimen name="title_error_size">22sp</dimen>
+    <dimen name="title_error_top_margin">2sp</dimen>
+    <dimen name="description_error_size">14sp</dimen>
 </resources>

@@ -2,6 +2,7 @@
     <string name="app_name">SuperheroesTFG</string>
 
     <string name="menu_fragment_home">home</string>
+    <string name="menu_fragment_credits">credits</string>
 
     <string name="super_heroes_name">Nombre super hereo</string>
 
@@ -41,5 +42,6 @@
     <string name="title_error_unknown">Error desconocido</string>
     <string name="description_error_unknown">Ha ocurrido un error inesperado. Por favor, intenta de nuevo o contacta con soporte.</string>
 
-
+    <!-- Strings for Credits -->
+    <string name="credits_text">TFG de Alfonso</string>
 </resources>

@@ -51,16 +51,7 @@ class SuperHeroDetailFragment : Fragment() {
 
     private fun setupObservers() {
         val observer = Observer<SuperHeroDetailViewModel.UiState> {
-            if (it.isLoading) {
-                //skeleton.showSkeleton()
-            } else {
-                //skeleton.showOriginal()
-                if (it.errorApp != null) {
-                    //TODO showError(it.errorApp)
-                } else {
-                    it.superHero?.let { superHero -> bindData(superHero = superHero) }
-                }
-            }
+            it.superHero?.let { superHero -> bindData(superHero = superHero) }
         }
         viewModel.uiState.observe(viewLifecycleOwner, observer)
 

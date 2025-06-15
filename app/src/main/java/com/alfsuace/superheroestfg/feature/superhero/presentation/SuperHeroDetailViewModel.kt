@@ -21,11 +21,19 @@ class SuperHeroDetailViewModel(
 
     fun getSuperHeroById(id: String) {
         _uiState.value = UiState(isLoading = true)
+
         viewModelScope.launch(Dispatchers.IO) {
-            val superHero = getSuperHeroByIdUseCase.invoke(id)
-            _uiState.postValue(UiState(superHero = superHero))
+            getSuperHeroByIdUseCase.invoke(id).fold(
+                onSuccess = { hero ->
+                    _uiState.postValue(UiState(isLoading = false, superHero = hero))
+                },
+                onFailure = { error ->
+                    _uiState.postValue(UiState(isLoading = false, errorApp = error as? ErrorApp))
+                }
+            )
         }
     }
+
 
     data class UiState(
         val isLoading: Boolean = false,

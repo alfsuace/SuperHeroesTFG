@@ -11,6 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alfsuace.superheroestfg.R
+import com.alfsuace.superheroestfg.app.domain.ErrorApp
+import com.alfsuace.superheroestfg.app.extensions.hide
+import com.alfsuace.superheroestfg.app.presentation.views.ErrorAppUIFactory
 import com.alfsuace.superheroestfg.databinding.FragmentSuperHeroesBinding
 import com.alfsuace.superheroestfg.feature.superhero.presentation.adapter.SuperHeroAdapter
 import com.faltenreich.skeletonlayout.Skeleton
@@ -111,14 +114,25 @@ class SuperHeroesFragment : Fragment() {
             } else {
                 skeleton.showOriginal()
                 if (it.errorApp != null) {
-                    //TODO showError(it.errorApp)
+                    bindError(it.errorApp)
                 } else {
                     superheroAdapter.submitList(it.superHeroes)
                 }
             }
         }
         viewModel.uiState.observe(viewLifecycleOwner, observer)
+    }
 
+    private fun bindError(errorApp: ErrorApp) {
+        if (errorApp != null) {
+            val error = ErrorAppUIFactory(requireContext())
+            val errorView = error.build(errorApp)
+            binding.superHeroSkeletonLayout.visibility = View.GONE
+            binding.errorSuperHeroList.render(errorView)
+        } else {
+            binding.superHeroSkeletonLayout.visibility = View.VISIBLE
+            binding.errorSuperHeroList.hide()
+        }
     }
 
     override fun onDestroyView() {

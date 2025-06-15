@@ -28,16 +28,36 @@ class SuperHeroViewModel(
     fun getSuperHeroes() {
         _uiState.value = UiState(isLoading = true)
         viewModelScope.launch(Dispatchers.IO) {
-            val superHeroes = getSuperHeroesUseCase.invoke()
-            _uiState.postValue(UiState(superHeroes = superHeroes))
+            getSuperHeroesUseCase.invoke().fold(
+                onSuccess = { heroes ->
+                    _uiState.postValue(
+                        UiState(isLoading = false, superHeroes = heroes)
+                    )
+                },
+                onFailure = { error ->
+                    _uiState.postValue(
+                        UiState(isLoading = false, errorApp = error as? ErrorApp)
+                    )
+                }
+            )
         }
     }
 
     fun getFavoriteSuperHeroes() {
         _uiState.value = UiState(isLoading = true)
         viewModelScope.launch(Dispatchers.IO) {
-            val superHeroes = getFavoritesSuperHeroesUseCase.invoke()
-            _uiState.postValue(UiState(superHeroes = superHeroes))
+            getFavoritesSuperHeroesUseCase.invoke().fold(
+                onSuccess = { heroes ->
+                    _uiState.postValue(
+                        UiState(isLoading = false, superHeroes = heroes)
+                    )
+                },
+                onFailure = { error ->
+                    _uiState.postValue(
+                        UiState(isLoading = false, errorApp = error as? ErrorApp)
+                    )
+                }
+            )
         }
     }
 

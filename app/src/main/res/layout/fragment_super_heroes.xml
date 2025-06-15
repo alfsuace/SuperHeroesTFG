@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".feature.superhero.presentation.SuperHeroesFragment">
 
     <include
@@ -23,5 +23,10 @@
             tools:listitem="@layout/view_item_superhero" />
 
     </com.faltenreich.skeletonlayout.SkeletonLayout>
+
+    <com.alfsuace.superheroestfg.app.presentation.views.ErrorAppView
+        android:id="@+id/error_super_hero_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

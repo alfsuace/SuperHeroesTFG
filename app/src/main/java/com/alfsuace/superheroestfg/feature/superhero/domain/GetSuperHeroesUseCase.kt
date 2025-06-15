@@ -8,13 +8,15 @@ class GetSuperHeroesUseCase(
     private val favoriteRepository: SuperHeroFavoriteRepository
 ) {
 
-    suspend operator fun invoke(): List<SuperHeroUiModel> {
+    suspend operator fun invoke(): Result<List<SuperHeroUiModel>> {
         val favoriteIds = favoriteRepository.getSuperHeroesById().toSet()
-        return repository.getSuperHeroes().map {
-            SuperHeroUiModel(
-                hero = it,
-                isFavorite = it.id.toString() in favoriteIds
-            )
+        return repository.getSuperHeroes().mapCatching { heroes ->
+            heroes.map {
+                SuperHeroUiModel(
+                    hero = it,
+                    isFavorite = it.id.toString() in favoriteIds
+                )
+            }
         }
     }
 

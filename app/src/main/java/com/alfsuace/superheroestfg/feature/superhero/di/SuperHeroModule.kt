@@ -8,6 +8,8 @@ import org.koin.core.annotation.Module
 import org.koin.core.annotation.Single
 import retrofit2.Retrofit
 
+const val TIME_CACHE = 60 * 1000
+
 @Module
 @ComponentScan
 class SuperHeroModule {

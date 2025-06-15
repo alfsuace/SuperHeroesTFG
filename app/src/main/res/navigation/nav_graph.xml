@@ -24,4 +24,11 @@
             app:argType="string" />
     </fragment>
 
+    <fragment
+        android:id="@+id/creditFragment"
+        android:name="com.alfsuace.superheroestfg.feature.credits.CreditsFragment"
+        android:label="Test"
+        tools:layout="@layout/fragment_credits" />
+
+
 </navigation>

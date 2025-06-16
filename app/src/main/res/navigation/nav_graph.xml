@@ -28,7 +28,24 @@
         android:id="@+id/creditFragment"
         android:name="com.alfsuace.superheroestfg.feature.credits.CreditsFragment"
         android:label="Test"
-        tools:layout="@layout/fragment_credits" />
+        tools:layout="@layout/fragment_credits">
+        <action
+            android:id="@+id/action_creditFragment_to_bottomSheetResourcesFragment"
+            app:destination="@id/bottomSheetResourcesFragment" />
+        <action
+            android:id="@+id/action_creditFragment_to_developerBottomSheetFragment"
+            app:destination="@id/developerBottomSheetFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/bottomSheetResourcesFragment"
+        android:name="com.alfsuace.superheroestfg.feature.credits.resources.presentation.BottomSheetResourcesFragment"
+        android:label="fragment_bottom_sheet_resources"
+        tools:layout="@layout/fragment_bottom_sheet_resources" />
+    <dialog
+        android:id="@+id/developerBottomSheetFragment"
+        android:name="com.alfsuace.superheroestfg.feature.credits.developer.presentation.DeveloperBottomSheetFragment"
+        android:label="DeveloperBottomSheetFragment"
+        tools:layout="@layout/fragment_developer_bottom_sheet" />
 
 
 </navigation>

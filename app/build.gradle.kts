@@ -4,6 +4,7 @@ plugins {
 
     alias(libs.plugins.navigation.safeargs.kotlin)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -63,6 +64,9 @@ dependencies {
     implementation(libs.coil)
 
     implementation(libs.skeletonlayout)
+
+    implementation(project.dependencies.platform(libs.firebaseBom))
+    implementation(libs.firebaseFirestore)
 
     ksp(libs.koin.ksp)
     implementation(project.dependencies.platform(libs.koin.bom))

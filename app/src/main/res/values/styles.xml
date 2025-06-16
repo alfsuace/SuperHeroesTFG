@@ -23,6 +23,10 @@
         <item name="android:scaleType">centerInside</item>
     </style>
 
+    <style name="CreditSectionStyle">
+        <item name="android:textColor">@color/md_theme_onSurface</item>
+        <item name="android:textAlignment">center</item>
+    </style>
     <!-- Card view list style -->
     <style name="CardListItem" parent="Widget.MaterialComponents.CardView">
         <item name="android:elevation">@dimen/spacing_xs</item>
@@ -73,11 +77,5 @@
         <item name="android:textAlignment">center</item>
     </style>
 
-    <style name="action_retry">
-        <item name="android:layout_marginTop">@dimen/margin_error_image_top</item>
-        <item name="android:layout_marginBottom">@dimen/margin_error</item>
-        <item name="android:layout_marginHorizontal">@dimen/margin_error</item>
-        <item name="android:backgroundTint">@color/md_theme_primary</item>
-    </style>
 
 </resources>

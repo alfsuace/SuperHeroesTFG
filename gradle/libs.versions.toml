@@ -22,6 +22,8 @@ koin-boom = "4.0.0"
 koin-annotations = "1.4.0"
 room-version = "2.7.1"
 ksp-version = "2.0.21-1.0.26"
+googleGmsGoogleServices = "4.4.2"
+firebaseBom = "33.15.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -57,9 +59,13 @@ room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "
 room-ksp = { group = "androidx.room", name = "room-compiler", version.ref = "room-version" }
 room-coroutines = { group = "androidx.room", name = "room-ktx", version.ref = "room-version" }
 
+firebaseBom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebaseFirestore = { module = "com.google.firebase:firebase-firestore" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
 navigation-safeargs-kotlin = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigationComponent" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }
+google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }

@@ -1,4 +1,4 @@
-package com.alfsuace.superheroestfg.app.data.di
+package com.alfsuace.superheroestfg.app.di
 
 import com.google.gson.Gson
 import org.koin.core.annotation.ComponentScan

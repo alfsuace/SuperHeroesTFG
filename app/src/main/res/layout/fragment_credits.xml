@@ -2,27 +2,62 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/center_card"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/spacing_vertical_extra"
-        app:cardCornerRadius="@dimen/spacing_vertical"
-        app:cardElevation="@dimen/spacing_text"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/center_card_text"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/credits_header"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/spacing_vertical_extra"
-            tools:text="Texto centrado" />
-    </androidx.cardview.widget.CardView>
+            android:layout_marginTop="@dimen/spacing_text"
+            style="@style/CreditSectionStyle"
+            android:text="@string/credits_header" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/credits_resources_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_text"
+            android:layout_marginBottom="@dimen/spacing_text"
+            app:cardCornerRadius="@dimen/spacing_text"
+            app:cardElevation="@dimen/spacing_xs">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/credits_resources"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_text"
+                android:text="@string/credits_resources"
+                android:textAppearance="?attr/textAppearanceBody1" />
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/credits_developer_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_text"
+            app:cardCornerRadius="@dimen/spacing_text"
+            app:cardElevation="@dimen/spacing_xs">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/credits_developer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_text"
+                android:text="@string/credits_developer"
+                android:textAppearance="?attr/textAppearanceBody1" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

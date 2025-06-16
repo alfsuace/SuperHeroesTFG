@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.alfsuace.superheroestfg.R
+import androidx.navigation.fragment.findNavController
 import com.alfsuace.superheroestfg.databinding.FragmentCreditsBinding
 
 
@@ -26,11 +26,19 @@ class CreditsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bindData()
+        setUpView()
     }
 
-    private fun bindData() {
-        binding.centerCardText.text = requireContext().getString(R.string.credits_text)
+    private fun setUpView() {
+        binding.apply {
+            creditsResourcesCard.setOnClickListener {
+                findNavController().navigate(CreditsFragmentDirections.actionCreditFragmentToBottomSheetResourcesFragment())
+            }
+
+            creditsDeveloperCard.setOnClickListener {
+                findNavController().navigate(CreditsFragmentDirections.actionCreditFragmentToDeveloperBottomSheetFragment())
+            }
+        }
     }
 
     override fun onDestroyView() {

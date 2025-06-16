@@ -1,5 +1,8 @@
-package com.alfsuace.superheroestfg.app.data.di
+package com.alfsuace.superheroestfg.app.di
 
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.annotation.Module
@@ -35,6 +38,11 @@ class RemoteModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         return retrofit
+    }
+
+    @Single
+    fun provideFirestore(): FirebaseFirestore {
+        return Firebase.firestore
     }
 
 }

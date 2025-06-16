@@ -129,9 +129,8 @@ class SuperHeroesFragment : Fragment() {
                 skeleton.showSkeleton()
             } else {
                 skeleton.showOriginal()
-                if (it.errorApp != null) {
-                    bindError(it.errorApp)
-                } else {
+                bindError(it.errorApp)
+                if (it.errorApp == null) {
                     superheroAdapter.submitList(it.superHeroes)
                 }
             }
@@ -139,7 +138,7 @@ class SuperHeroesFragment : Fragment() {
         viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
 
-    private fun bindError(errorApp: ErrorApp) {
+    private fun bindError(errorApp: ErrorApp?) {
         if (errorApp != null) {
             val error = ErrorAppUIFactory(requireContext())
             val errorView = error.build(errorApp)

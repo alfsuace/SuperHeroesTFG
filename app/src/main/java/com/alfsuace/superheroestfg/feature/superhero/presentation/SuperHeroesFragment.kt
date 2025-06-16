@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -57,6 +58,22 @@ class SuperHeroesFragment : Fragment() {
                     }
                 }
             }
+            searchHeroInput.doAfterTextChanged {
+                val name = it.toString()
+                if (name.isNotEmpty()) {
+                    if (buttonListForView) {
+                        viewModel.searchFavoritesSuperHeroes(name)
+                    } else {
+                        viewModel.searchSuperHeroes(name)
+                    }
+                } else {
+                    if (buttonListForView) {
+                        viewModel.getFavoriteSuperHeroes()
+                    } else {
+                        viewModel.getSuperHeroes()
+                    }
+                }
+            }
             superHeroList.apply {
                 layoutManager = LinearLayoutManager(
                     requireContext(),
@@ -64,7 +81,6 @@ class SuperHeroesFragment : Fragment() {
                     false
                 )
                 adapter = superheroAdapter
-
                 superheroAdapter.setEvent(
                     onClick = { navigateToSuperHeroDetail(it) },
                     onFavoriteClick = { id, isFavorite ->
@@ -75,13 +91,13 @@ class SuperHeroesFragment : Fragment() {
                         }
                     }
                 )
-
                 skeleton = applySkeleton(R.layout.view_item_superhero, 15)
             }
         }
     }
 
     private fun updateList(menuItem: MenuItem) {
+        binding.searchHeroInput.setText("")
         if (buttonListForView) {
             menuItem.icon =
                 AppCompatResources.getDrawable(requireContext(), R.drawable.ic_favorite_filled)
@@ -90,7 +106,6 @@ class SuperHeroesFragment : Fragment() {
             menuItem.icon = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_favorite)
             viewModel.getSuperHeroes()
         }
-
     }
 
     private fun navigateToSuperHeroDetail(superHeroId: String) {
@@ -103,6 +118,7 @@ class SuperHeroesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.searchHeroInput.clearFocus()
         setupObservers()
         viewModel.getSuperHeroes()
     }

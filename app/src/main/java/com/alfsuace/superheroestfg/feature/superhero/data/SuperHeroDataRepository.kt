@@ -37,4 +37,17 @@ class SuperHeroDataRepository(
             return Result.failure(hero)
         }
     }
+
+    override suspend fun getHeroByNameOrSlug(name: String): Result<List<SuperHero>> {
+        return localDataSource.getHeroByNameOrSlug(name).onFailure { localError ->
+            if (localError is ErrorApp.CacheExpiredErrorApp || localError is ErrorApp.DataErrorApp) {
+                val heroes = remoteDataSource.getSuperHeroes().getOrNull()
+                heroes?.let {
+                    localDataSource.saveSuperHeroes(it)
+                }
+                return localDataSource.getHeroByNameOrSlug(name)
+            }
+            return Result.failure(localError)
+        }
+    }
 }

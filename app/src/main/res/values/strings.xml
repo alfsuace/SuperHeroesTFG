@@ -44,4 +44,5 @@
 
     <!-- Strings for Credits -->
     <string name="credits_text">TFG de Alfonso</string>
+    <string name="search_hero_hint">Buscar héroe...</string>
 </resources>

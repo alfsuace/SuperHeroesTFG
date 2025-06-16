@@ -50,6 +50,15 @@ class SuperHeroDbDataSource(private val dao: SuperHeroDao) {
         return System.currentTimeMillis() - date < TIME_CACHE
     }
 
+    suspend fun getHeroByNameOrSlug(name: String): Result<List<SuperHero>> {
+        val heroes = dao.searchByNameOrSlug(name)
+        return if (heroes.isNotEmpty()) {
+            Result.success(heroes.map { it.toModel() })
+        } else {
+            Result.failure(ErrorApp.DataErrorApp)
+        }
+    }
+
     suspend fun deleteAllHeroes() {
         dao.deleteAllHeroes()
     }

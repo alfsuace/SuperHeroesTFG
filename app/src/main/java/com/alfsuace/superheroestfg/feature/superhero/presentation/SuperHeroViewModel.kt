@@ -6,9 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alfsuace.superheroestfg.app.domain.ErrorApp
 import com.alfsuace.superheroestfg.feature.superhero.domain.DeleteFavoriteSuperHeroUseCase
+import com.alfsuace.superheroestfg.feature.superhero.domain.GetFavoritesSuperHeroesByNameOrSlug
 import com.alfsuace.superheroestfg.feature.superhero.domain.GetFavoritesSuperHeroesUseCase
 import com.alfsuace.superheroestfg.feature.superhero.domain.GetSuperHeroesUseCase
 import com.alfsuace.superheroestfg.feature.superhero.domain.SaveFavoriteSuperHeroUseCase
+import com.alfsuace.superheroestfg.feature.superhero.domain.SearchSuperHeroesUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.annotation.KoinViewModel
@@ -16,6 +18,8 @@ import org.koin.android.annotation.KoinViewModel
 @KoinViewModel
 class SuperHeroViewModel(
     private val getSuperHeroesUseCase: GetSuperHeroesUseCase,
+    private val searchSuperHeroesUseCase: SearchSuperHeroesUseCase,
+    private val getFavoritesSuperHeroesByNameOrSlug: GetFavoritesSuperHeroesByNameOrSlug,
     private val getFavoritesSuperHeroesUseCase: GetFavoritesSuperHeroesUseCase,
     private val saveFavoriteSuperHeroUseCase: SaveFavoriteSuperHeroUseCase,
     private val deleteFavoriteSuperHeroUseCase: DeleteFavoriteSuperHeroUseCase
@@ -29,6 +33,42 @@ class SuperHeroViewModel(
         _uiState.value = UiState(isLoading = true)
         viewModelScope.launch(Dispatchers.IO) {
             getSuperHeroesUseCase.invoke().fold(
+                onSuccess = { heroes ->
+                    _uiState.postValue(
+                        UiState(isLoading = false, superHeroes = heroes)
+                    )
+                },
+                onFailure = { error ->
+                    _uiState.postValue(
+                        UiState(isLoading = false, errorApp = error as? ErrorApp)
+                    )
+                }
+            )
+        }
+    }
+
+    fun searchSuperHeroes(query: String) {
+        _uiState.value = UiState(isLoading = true)
+        viewModelScope.launch(Dispatchers.IO) {
+            searchSuperHeroesUseCase.invoke(query).fold(
+                onSuccess = { heroes ->
+                    _uiState.postValue(
+                        UiState(isLoading = false, superHeroes = heroes)
+                    )
+                },
+                onFailure = { error ->
+                    _uiState.postValue(
+                        UiState(isLoading = false, errorApp = error as? ErrorApp)
+                    )
+                }
+            )
+        }
+    }
+
+    fun searchFavoritesSuperHeroes(query: String) {
+        _uiState.value = UiState(isLoading = true)
+        viewModelScope.launch(Dispatchers.IO) {
+            getFavoritesSuperHeroesByNameOrSlug.invoke(query).fold(
                 onSuccess = { heroes ->
                     _uiState.postValue(
                         UiState(isLoading = false, superHeroes = heroes)

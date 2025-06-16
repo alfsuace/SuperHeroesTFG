@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -75,7 +76,6 @@ class SuperHeroesFragment : Fragment() {
                         }
                     }
                 )
-
                 skeleton = applySkeleton(R.layout.view_item_superhero, 15)
             }
         }
@@ -86,11 +86,24 @@ class SuperHeroesFragment : Fragment() {
             menuItem.icon =
                 AppCompatResources.getDrawable(requireContext(), R.drawable.ic_favorite_filled)
             viewModel.getFavoriteSuperHeroes()
+            binding.searchHeroInput.doAfterTextChanged {
+                if (it.toString().isNotEmpty()) {
+                    viewModel.searchFavoritesSuperHeroes(it.toString())
+                } else {
+                    viewModel.getFavoriteSuperHeroes()
+                }
+            }
         } else {
             menuItem.icon = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_favorite)
             viewModel.getSuperHeroes()
+            binding.searchHeroInput.doAfterTextChanged {
+                if (it.toString().isNotEmpty()) {
+                    viewModel.searchSuperHeroes(it.toString())
+                } else {
+                    viewModel.getSuperHeroes()
+                }
+            }
         }
-
     }
 
     private fun navigateToSuperHeroDetail(superHeroId: String) {

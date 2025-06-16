@@ -20,4 +20,14 @@ interface SuperHeroDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertHeroes(vararg superHeroes: SuperHeroEntity)
 
+    @Query(
+        """
+        SELECT * FROM $SUPERHERO_TABLE
+        WHERE name LIKE '%' || :name || '%' 
+           OR slug LIKE '%' || :name || '%'
+        ORDER BY name ASC
+    """
+    )
+    suspend fun searchByNameOrSlug(name: String): List<SuperHeroEntity>
+
 }

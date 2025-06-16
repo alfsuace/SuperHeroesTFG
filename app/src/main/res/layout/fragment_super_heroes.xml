@@ -11,6 +11,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <EditText
+        android:id="@+id/search_hero_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/search_hero_hint"
+        android:padding="@dimen/spacing_text"
+        android:drawableStart="@drawable/ic_search"
+        android:inputType="text"
+        android:imeOptions="actionDone"
+        android:layout_marginHorizontal="@dimen/spacing_horizontal"
+        android:layout_marginTop="@dimen/spacing_text"
+        android:layout_marginBottom="@dimen/spacing_text" />
+
     <com.faltenreich.skeletonlayout.SkeletonLayout
         android:id="@+id/super_hero_skeleton_layout"
         android:layout_width="match_parent"

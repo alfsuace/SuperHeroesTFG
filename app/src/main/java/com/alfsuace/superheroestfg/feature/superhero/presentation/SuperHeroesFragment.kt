@@ -97,6 +97,7 @@ class SuperHeroesFragment : Fragment() {
     }
 
     private fun updateList(menuItem: MenuItem) {
+        binding.searchHeroInput.setText("")
         if (buttonListForView) {
             menuItem.icon =
                 AppCompatResources.getDrawable(requireContext(), R.drawable.ic_favorite_filled)

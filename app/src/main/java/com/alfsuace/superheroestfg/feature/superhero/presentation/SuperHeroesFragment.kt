@@ -58,6 +58,22 @@ class SuperHeroesFragment : Fragment() {
                     }
                 }
             }
+            searchHeroInput.doAfterTextChanged {
+                val name = it.toString()
+                if (name.isNotEmpty()) {
+                    if (buttonListForView) {
+                        viewModel.searchFavoritesSuperHeroes(name)
+                    } else {
+                        viewModel.searchSuperHeroes(name)
+                    }
+                } else {
+                    if (buttonListForView) {
+                        viewModel.getFavoriteSuperHeroes()
+                    } else {
+                        viewModel.getSuperHeroes()
+                    }
+                }
+            }
             superHeroList.apply {
                 layoutManager = LinearLayoutManager(
                     requireContext(),
@@ -65,7 +81,6 @@ class SuperHeroesFragment : Fragment() {
                     false
                 )
                 adapter = superheroAdapter
-
                 superheroAdapter.setEvent(
                     onClick = { navigateToSuperHeroDetail(it) },
                     onFavoriteClick = { id, isFavorite ->
@@ -86,23 +101,9 @@ class SuperHeroesFragment : Fragment() {
             menuItem.icon =
                 AppCompatResources.getDrawable(requireContext(), R.drawable.ic_favorite_filled)
             viewModel.getFavoriteSuperHeroes()
-            binding.searchHeroInput.doAfterTextChanged {
-                if (it.toString().isNotEmpty()) {
-                    viewModel.searchFavoritesSuperHeroes(it.toString())
-                } else {
-                    viewModel.getFavoriteSuperHeroes()
-                }
-            }
         } else {
             menuItem.icon = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_favorite)
             viewModel.getSuperHeroes()
-            binding.searchHeroInput.doAfterTextChanged {
-                if (it.toString().isNotEmpty()) {
-                    viewModel.searchSuperHeroes(it.toString())
-                } else {
-                    viewModel.getSuperHeroes()
-                }
-            }
         }
     }
 

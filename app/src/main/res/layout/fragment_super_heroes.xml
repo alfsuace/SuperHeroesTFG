@@ -24,18 +24,24 @@
         android:layout_marginTop="@dimen/spacing_text"
         android:layout_marginBottom="@dimen/spacing_text" />
 
-    <com.faltenreich.skeletonlayout.SkeletonLayout
-        android:id="@+id/super_hero_skeleton_layout"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_to_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/super_hero_list"
+        <com.faltenreich.skeletonlayout.SkeletonLayout
+            android:id="@+id/super_hero_skeleton_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/view_item_superhero" />
+            android:layout_height="match_parent">
 
-    </com.faltenreich.skeletonlayout.SkeletonLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/super_hero_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/view_item_superhero" />
+
+        </com.faltenreich.skeletonlayout.SkeletonLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.alfsuace.superheroestfg.app.presentation.views.ErrorAppView
         android:id="@+id/error_super_hero_list"

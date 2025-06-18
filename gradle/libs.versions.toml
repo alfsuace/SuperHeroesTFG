@@ -24,6 +24,7 @@ room-version = "2.7.1"
 ksp-version = "2.0.21-1.0.26"
 googleGmsGoogleServices = "4.4.2"
 firebaseBom = "33.15.0"
+swiperefreshlayout = "1.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -61,6 +62,8 @@ room-coroutines = { group = "androidx.room", name = "room-ktx", version.ref = "r
 
 firebaseBom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebaseFirestore = { module = "com.google.firebase:firebase-firestore" }
+
+androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

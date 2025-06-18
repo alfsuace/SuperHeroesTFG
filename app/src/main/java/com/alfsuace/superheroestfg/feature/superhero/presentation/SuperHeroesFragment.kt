@@ -59,7 +59,13 @@ class SuperHeroesFragment : Fragment() {
                     }
                 }
             }
-
+            swipeToRefresh.setOnRefreshListener {
+                if (buttonListForView) {
+                    viewModel.getFavoriteSuperHeroes()
+                } else {
+                    viewModel.getSuperHeroes()
+                }
+            }
             searchHeroInput.doAfterTextChanged {
                 val name = it.toString()
                 if (name.isNotEmpty()) {
@@ -129,6 +135,8 @@ class SuperHeroesFragment : Fragment() {
 
     private fun setupObservers() {
         val observer = Observer<SuperHeroViewModel.UiState> {
+            binding.swipeToRefresh.isRefreshing = false
+
             if (it.isLoading) {
                 skeleton.showSkeleton()
             } else {
@@ -139,16 +147,18 @@ class SuperHeroesFragment : Fragment() {
                     val layoutManager = binding.superHeroList.layoutManager as LinearLayoutManager
 
                     superheroAdapter.submitList(it.superHeroes) {
-                        when {
-                            resetScrollToTop -> layoutManager.scrollToPosition(0)
+                        if (resetScrollToTop) {
+                            layoutManager.scrollToPosition(0)
+                            resetScrollToTop = false
                         }
-                        resetScrollToTop = false
                     }
                 }
             }
         }
+
         viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
+
 
     private fun bindError(errorApp: ErrorApp?) {
         if (errorApp != null) {

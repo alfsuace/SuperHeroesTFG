@@ -68,6 +68,8 @@ dependencies {
     implementation(project.dependencies.platform(libs.firebaseBom))
     implementation(libs.firebaseFirestore)
 
+    implementation(libs.androidx.swiperefreshlayout)
+
     ksp(libs.koin.ksp)
     implementation(project.dependencies.platform(libs.koin.bom))
     implementation(libs.koin.android)

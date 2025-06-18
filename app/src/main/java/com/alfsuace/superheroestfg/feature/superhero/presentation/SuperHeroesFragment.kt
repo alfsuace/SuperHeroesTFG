@@ -59,11 +59,7 @@ class SuperHeroesFragment : Fragment() {
                     }
                 }
             }
-            if (!buttonListForView) {
-                swipeToRefresh.setOnRefreshListener {
-                    viewModel.getSuperHeroes()
-                }
-            }
+
             searchHeroInput.doAfterTextChanged {
                 val name = it.toString()
                 if (name.isNotEmpty()) {

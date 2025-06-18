@@ -21,7 +21,6 @@ import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class SuperHeroesFragment : Fragment() {
 
     private var _binding: FragmentSuperHeroesBinding? = null
@@ -31,6 +30,8 @@ class SuperHeroesFragment : Fragment() {
     private lateinit var superheroAdapter: SuperHeroAdapter
     private lateinit var skeleton: Skeleton
     private var buttonListForView = false
+
+    private var resetScrollToTop = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,6 +57,11 @@ class SuperHeroesFragment : Fragment() {
                     } else {
                         false
                     }
+                }
+            }
+            if (!buttonListForView) {
+                swipeToRefresh.setOnRefreshListener {
+                    viewModel.getSuperHeroes()
                 }
             }
             searchHeroInput.doAfterTextChanged {
@@ -98,6 +104,8 @@ class SuperHeroesFragment : Fragment() {
 
     private fun updateList(menuItem: MenuItem) {
         binding.searchHeroInput.setText("")
+        resetScrollToTop = true
+
         if (buttonListForView) {
             menuItem.icon =
                 AppCompatResources.getDrawable(requireContext(), R.drawable.ic_favorite_filled)
@@ -130,8 +138,16 @@ class SuperHeroesFragment : Fragment() {
             } else {
                 skeleton.showOriginal()
                 bindError(it.errorApp)
+
                 if (it.errorApp == null) {
-                    superheroAdapter.submitList(it.superHeroes)
+                    val layoutManager = binding.superHeroList.layoutManager as LinearLayoutManager
+
+                    superheroAdapter.submitList(it.superHeroes) {
+                        when {
+                            resetScrollToTop -> layoutManager.scrollToPosition(0)
+                        }
+                        resetScrollToTop = false
+                    }
                 }
             }
         }

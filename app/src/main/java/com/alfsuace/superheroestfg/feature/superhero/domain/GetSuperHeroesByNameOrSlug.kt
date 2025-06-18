@@ -3,7 +3,7 @@ package com.alfsuace.superheroestfg.feature.superhero.domain
 import org.koin.core.annotation.Single
 
 @Single
-class SearchSuperHeroesUseCase(
+class GetSuperHeroesByNameOrSlug(
     private val heroRepository: SuperHeroRepository,
     private val favoriteRepository: SuperHeroFavoriteRepository
 ) {

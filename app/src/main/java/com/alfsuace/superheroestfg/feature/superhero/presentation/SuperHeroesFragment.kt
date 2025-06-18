@@ -165,9 +165,11 @@ class SuperHeroesFragment : Fragment() {
             val error = ErrorAppUIFactory(requireContext())
             val errorView = error.build(errorApp)
             binding.superHeroSkeletonLayout.visibility = View.GONE
+            binding.swipeToRefresh.visibility = View.GONE
             binding.errorSuperHeroList.render(errorView)
         } else {
             binding.superHeroSkeletonLayout.visibility = View.VISIBLE
+            binding.swipeToRefresh.visibility = View.VISIBLE
             binding.errorSuperHeroList.hide()
         }
     }
